@@ -71,8 +71,8 @@ def Strukturni(x_train, y_train, x_test, y_test):
         for i in range(y_test.shape[1]):
             kolone = np.array([x for x in range(i*18,18*(i+1))])
             X_test_CRF[i,:] = x_test[k,kolone] 
-        test_tree.append((X_test_CRF.copy(), tree.T))
-        test_full.append((X_test_CRF.copy(), full.T))
+        test_tree.append((X_test_CRF.copy(), tree))
+        test_full.append((X_test_CRF.copy(), full))
 
     """ SSVM, MLP, CRF-graph, DT - pystruct """
     """CREATE DATASET FOR GNN """  
@@ -93,8 +93,8 @@ def Strukturni(x_train, y_train, x_test, y_test):
     independent_ssvm = OneSlackSSVM(independent_model, C=.1, tol=0.01, max_iter=150)
     MLP = MLPClassifier()
     DT = DecisionTreeClassifier()
-    CRF_tree = OneSlackSSVM(model = modelCRF_tree, C=.1, max_iter=150)      
-    CRF_full = OneSlackSSVM(model = modelCRF_full, C=.1, max_iter=150) 
+    CRF_tree = OneSlackSSVM(model = modelCRF_tree, C=.1, max_iter=250)      
+    CRF_full = OneSlackSSVM(model = modelCRF_full, C=.1, max_iter=250) 
     
     
     """ Fit models """
